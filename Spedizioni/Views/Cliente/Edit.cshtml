@@ -1,0 +1,70 @@
+﻿@model Spedizioni.Models.Cliente
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="TipoCliente" class="control-label"></label>
+                <select asp-for="TipoCliente" class="form-control" onchange="selectType()">
+                    <option value="" selected disabled>Seleziona</option>
+                    <option value="Azienda">Azienda</option>
+                    <option value="Privato">Privato</option>
+                </select>
+                <span asp-validation-for="TipoCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="CodiceFiscaleForm">
+                <label asp-for="CodiceFiscale" class="control-label"></label>
+                <input asp-for="CodiceFiscale" class="form-control" />
+                <span asp-validation-for="CodiceFiscale" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="PartitaIvaForm">
+                <label asp-for="PartitaIva" class="control-label"></label>
+                <input asp-for="PartitaIva" class="form-control" />
+                <span asp-validation-for="PartitaIva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            selectType();
+        }
+        function selectType() {
+            if (document.getElementById("TipoCliente").value.toLowerCase() === "azienda")         
+            { 
+                document.getElementById("CodiceFiscale").value = "";
+                document.getElementById("CodiceFiscaleForm").hidden = true;
+                document.getElementById("PartitaIvaForm").hidden = false;
+            } else if(document.getElementById("TipoCliente").value.toLowerCase() === "privato"){
+                document.getElementById("PartitaIva").value = "";
+                document.getElementById("CodiceFiscaleForm").hidden = false;
+                document.getElementById("PartitaIvaForm").hidden = true;
+            }
+        }   
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

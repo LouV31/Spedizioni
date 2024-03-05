@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Spedizioni.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Cliente">Nuovo Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodiceFiscale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartitaIva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Id)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodiceFiscale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartitaIva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>    
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

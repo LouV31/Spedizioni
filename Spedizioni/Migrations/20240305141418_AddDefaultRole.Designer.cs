@@ -11,8 +11,8 @@ using Spedizioni.Data;
 namespace Spedizioni.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240304153139_add-migration AddClienteToDatabase")]
-    partial class addmigrationAddClienteToDatabase
+    [Migration("20240305141418_AddDefaultRole")]
+    partial class AddDefaultRole
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,17 +32,48 @@ namespace Spedizioni.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Identificativo")
-                        .IsRequired()
+                    b.Property<string>("CodiceFiscale")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PartitaIva")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoCliente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Clienti");
+                });
+
+            modelBuilder.Entity("Spedizioni.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
