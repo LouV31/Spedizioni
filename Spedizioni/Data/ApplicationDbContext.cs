@@ -10,6 +10,7 @@ namespace Spedizioni.Data
         }
         public DbSet<Cliente> Clienti { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Spedizione> Spedizione { get; set; } = default!;
 
 
         // viene utilizzato per configurare il modello di entità che entity framework Core utilizzerà per creare il db

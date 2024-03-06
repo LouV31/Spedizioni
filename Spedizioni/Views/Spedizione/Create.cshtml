@@ -1,0 +1,64 @@
+﻿@model Spedizioni.Models.Spedizione
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Spedizione</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdCliente" class="control-label"></label>
+                <select asp-for="IdCliente" class ="form-control" asp-items="ViewBag.IdCliente"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataSpedizione" class="control-label"></label>
+                <input asp-for="DataSpedizione" class="form-control" />
+                <span asp-validation-for="DataSpedizione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="peso" class="control-label"></label>
+                <input asp-for="peso" class="form-control" />
+                <span asp-validation-for="peso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Destinazione" class="control-label"></label>
+                <input asp-for="Destinazione" class="form-control" />
+                <span asp-validation-for="Destinazione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NominativoDestinatario" class="control-label"></label>
+                <input asp-for="NominativoDestinatario" class="form-control" />
+                <span asp-validation-for="NominativoDestinatario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Indirizzo" class="control-label"></label>
+                <input asp-for="Indirizzo" class="form-control" />
+                <span asp-validation-for="Indirizzo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrezzoSpedizione" class="control-label"></label>
+                <input asp-for="PrezzoSpedizione" class="form-control" />
+                <span asp-validation-for="PrezzoSpedizione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataConsegna" class="control-label"></label>
+                <input asp-for="DataConsegna" class="form-control" />
+                <span asp-validation-for="DataConsegna" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
