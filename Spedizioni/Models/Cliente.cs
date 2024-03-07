@@ -18,5 +18,7 @@ namespace Spedizioni.Models
 
         [Required]
         public string Nome { get; set; }
+
+        public virtual ICollection<Spedizione> Spedizioni { get; set; }
     }
 }

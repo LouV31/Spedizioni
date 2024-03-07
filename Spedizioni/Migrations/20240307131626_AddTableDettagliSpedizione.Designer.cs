@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Spedizioni.Data;
 
@@ -11,9 +12,11 @@ using Spedizioni.Data;
 namespace Spedizioni.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240307131626_AddTableDettagliSpedizione")]
+    partial class AddTableDettagliSpedizione
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,8 +68,6 @@ namespace Spedizioni.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdDettagliSpedizione");
-
-                    b.HasIndex("IdSpedizione");
 
                     b.ToTable("DettagliSpedizione");
                 });
@@ -142,17 +143,6 @@ namespace Spedizioni.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Spedizioni.Models.DettagliSpedizione", b =>
-                {
-                    b.HasOne("Spedizioni.Models.Spedizione", "Spedizione")
-                        .WithMany("DettagliSpedizione")
-                        .HasForeignKey("IdSpedizione")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Spedizione");
-                });
-
             modelBuilder.Entity("Spedizioni.Models.Spedizione", b =>
                 {
                     b.HasOne("Spedizioni.Models.Cliente", "Cliente")
@@ -167,11 +157,6 @@ namespace Spedizioni.Migrations
             modelBuilder.Entity("Spedizioni.Models.Cliente", b =>
                 {
                     b.Navigation("Spedizioni");
-                });
-
-            modelBuilder.Entity("Spedizioni.Models.Spedizione", b =>
-                {
-                    b.Navigation("DettagliSpedizione");
                 });
 #pragma warning restore 612, 618
         }

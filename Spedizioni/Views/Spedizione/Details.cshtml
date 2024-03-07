@@ -1,5 +1,6 @@
 ﻿@model Spedizioni.Models.Spedizione
 
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -64,3 +65,33 @@
     <a asp-action="Edit" asp-route-id="@Model?.IdSpedizione">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+<hr/>
+<h2>Dettagli Stato Spedizione</h2>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DettagliSpedizione)
+                </th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DettagliSpedizione)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdDettagliSpedizione)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdSpedizione)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stato)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -35,6 +35,11 @@ namespace Spedizioni.Models
         // Proprietà di navigazione
         // Serve a creare una relazione uno a molti tra cliente e spedizione
 
-        public Cliente Cliente { get; set; }
+        [NotMapped]
+        public virtual Cliente Cliente { get; set; }
+        [NotMapped]
+        public virtual ICollection<DettagliSpedizione> DettagliSpedizione { get; set; }
+
+
     }
 }
